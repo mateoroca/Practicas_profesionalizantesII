@@ -16,7 +16,7 @@ int i = 0;
 
 figura F;
 
-void crearCirculo(figura& F)
+void crearCirculo()
 {    
     
     float radius;
@@ -27,7 +27,7 @@ void crearCirculo(figura& F)
     F.i++;
 }    
 
-void crearCuadrado(figura& F)
+void crearCuadrado()
 {    
     
     float side;
@@ -37,7 +37,7 @@ void crearCuadrado(figura& F)
     F.Figura[F.i] = new Square(side);
     F.i++;
 }
-void crearTrianguloEquilatero(figura& F)
+void crearTrianguloEquilatero()
 {
      
     float base,altura;
@@ -49,7 +49,7 @@ void crearTrianguloEquilatero(figura& F)
     F.Figura[F.i] = new equilateralTriangle(altura,base);
     F.i++;
 }
-void crearTrianguloIsosceles(figura& F)
+void crearTrianguloIsosceles()
 {
 
     float lado1 ,base,altura;
@@ -63,7 +63,7 @@ void crearTrianguloIsosceles(figura& F)
     F.Figura[F.i] = new isoscelesTriangle(lado1,base,altura);
     F.i++;
 }
-void crearTrianguloescaleno(figura& F)
+void crearTrianguloescaleno()
 {
    float lado1 ,lado2,base,altura;
     cout << "Ingrese la longitud de un lado del triangulo:";
@@ -78,14 +78,14 @@ void crearTrianguloescaleno(figura& F)
     F.Figura[F.i] = new scaleneTriangle(lado1,lado2,base,altura);
     F.i++;
 }
-void mostrarDatos(figura& F)
+void mostrarDatos()
 {
     for (int i = 0; i < F.i; i++)
     {
         cout  << endl;
         cout << "-----MOSTRANDO DATOS-----" << endl;
-        cout  << "El area de la figura: " <<  F.i+1 << " es: "     << F.Figura[F.i]->getArea() << endl;
-        cout  << "El perimetro de la figura: " << F.i+1 << " es: " << F.Figura[F.i]->getPerimeter() << endl;
+        cout  << "El area de la figura: " <<  F.i << " es: "     << F.Figura[F.i]->getArea() << endl;
+        cout  << "El perimetro de la figura: " << F.i << " es: " << F.Figura[F.i]->getPerimeter() << endl;
     }
 }
 
@@ -95,29 +95,29 @@ void cargarFigura()
         int opc;
         cout << "Indique que figura quiere crear: "        << endl;
         cout<<"Digite el numero de la opcion que desea: "  << endl
-            <<"digite 1 para crear un circulo"             <<endl
-            <<"digite 2 para crear un cuadrado"            <<endl
-            <<"digite 3 para crear un triangulo equilatero"<<endl
-            <<"digite 4 para crear un triangulo escaleno"  <<endl
-            <<"digite 5 para crear un triangulo isosceles" <<endl; 
+            <<"digite 1 para crear un circulo"             << endl
+            <<"digite 2 para crear un cuadrado"            << endl
+            <<"digite 3 para crear un triangulo equilatero"<< endl
+            <<"digite 4 para crear un triangulo escaleno"  << endl
+            <<"digite 5 para crear un triangulo isosceles" << endl; 
             cin >> opc;
 
         switch (opc)
         {
         case 1:
-           crearCirculo(F);
+           crearCirculo();
             break;
         case 2: 
-         crearCuadrado(F);
+         crearCuadrado();
             break;
          case 3:
-         crearTrianguloEquilatero(F);
+         crearTrianguloEquilatero();
             break;
          case 4:
-         crearTrianguloescaleno(F);
+         crearTrianguloescaleno();
             break;
          case 5: 
-         crearTrianguloIsosceles(F);
+         crearTrianguloIsosceles();
             break;
         default:
              cout << "error";
@@ -155,7 +155,7 @@ void menu()
             break;
 
             case 2:
-                mostrarDatos(F);
+                mostrarDatos();
                
             break;
 
