@@ -25,6 +25,7 @@ void crearCirculo()
    
     F.Figura[F.i] = new Circle(radius);
     F.i++;
+    system("cls");
 }    
 
 void crearCuadrado()
@@ -36,6 +37,7 @@ void crearCuadrado()
    
     F.Figura[F.i] = new Square(side);
     F.i++;
+    system("cls");
 }
 void crearTrianguloEquilatero()
 {
@@ -48,6 +50,7 @@ void crearTrianguloEquilatero()
    
     F.Figura[F.i] = new equilateralTriangle(altura,base);
     F.i++;
+    system("cls");
 }
 void crearTrianguloIsosceles()
 {
@@ -62,6 +65,7 @@ void crearTrianguloIsosceles()
    
     F.Figura[F.i] = new isoscelesTriangle(lado1,base,altura);
     F.i++;
+    system("cls");
 }
 void crearTrianguloescaleno()
 {
@@ -77,15 +81,17 @@ void crearTrianguloescaleno()
    
     F.Figura[F.i] = new scaleneTriangle(lado1,lado2,base,altura);
     F.i++;
+    system("cls");
 }
 void mostrarDatos()
 {
     for (int i = 0; i < F.i; i++)
     {
         cout  << endl;
-        cout << "-----MOSTRANDO DATOS-----" << endl;
-        cout  << "El area de la figura: " <<  F.i << " es: "     << F.Figura[F.i]->getArea() << endl;
-        cout  << "El perimetro de la figura: " << F.i << " es: " << F.Figura[F.i]->getPerimeter() << endl;
+        cout  << "-----MOSTRANDO DATOS-----"                                                          << endl;
+        cout  << "El area de la figura: "      <<  i+1 << " es: "     << F.Figura[i]->getArea()      << endl;
+        cout  << "El perimetro de la figura: " << i+1  << " es: "     << F.Figura[i]->getPerimeter() << endl;
+        cout  << endl;
     }
 }
 
@@ -93,7 +99,7 @@ void cargarFigura()
 {   
    
         int opc;
-        cout << "Indique que figura quiere crear: "        << endl;
+        cout<< "Indique que figura quiere crear: "        << endl;
         cout<<"Digite el numero de la opcion que desea: "  << endl
             <<"digite 1 para crear un circulo"             << endl
             <<"digite 2 para crear un cuadrado"            << endl
@@ -105,18 +111,23 @@ void cargarFigura()
         switch (opc)
         {
         case 1:
+        system("cls");
            crearCirculo();
             break;
         case 2: 
+        system("cls");
          crearCuadrado();
             break;
          case 3:
+         system("cls");
          crearTrianguloEquilatero();
             break;
          case 4:
+         system("cls");
          crearTrianguloescaleno();
             break;
          case 5: 
+         system("cls");
          crearTrianguloIsosceles();
             break;
         default:
@@ -149,18 +160,23 @@ void menu()
         switch (opcion)
         {
             case 1:
+                system("cls");
                 cargarFigura();
                 
                 
             break;
 
-            case 2:
+            case 2:system("cls");
                 mostrarDatos();
                
             break;
 
             case 3: 
               
+              for (int i = 0; i < F.i; i++)
+                {
+                    delete F.Figura[i];
+                }
                 
                 exit(EXIT_SUCCESS);
            break;
@@ -176,11 +192,6 @@ void menu()
 int main()
 {
     menu();
-   
 
-    for (int i = 0; i < F.i; i++)
-                {
-                    delete F.Figura[i];
-                }
     return 0;
 }
