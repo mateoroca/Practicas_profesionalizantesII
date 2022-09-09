@@ -9,31 +9,35 @@
 
 using namespace std;
 
-Shape* figura[10];
+struct figura{
+Shape* Figura[10];
 int i = 0;
+};
 
-void crearCirculo()
+figura F;
+
+void crearCirculo(figura& F)
 {    
-    int i;
+    
     float radius;
-    cout<<"Digite la longitur del radio del circulo:";
+    cout<<"Digite la longitud del radio del circulo:";
     cin>>radius;
    
-    figura[i] = new Circle(radius);
-    i++;
+    F.Figura[F.i] = new Circle(radius);
+    F.i++;
 }    
 
-void crearCuadrado()
+void crearCuadrado(figura& F)
 {    
     
     float side;
     cout<<"Digite la longitur de un lado del cuadrado:";
     cin>>side;
    
-    figura[i] = new Square(side);
-    i++;
+    F.Figura[F.i] = new Square(side);
+    F.i++;
 }
-void crearTrianguloEquilatero()
+void crearTrianguloEquilatero(figura& F)
 {
      
     float base,altura;
@@ -42,10 +46,10 @@ void crearTrianguloEquilatero()
     cout << "Digite la altura del triangulo:";
     cin >> altura;
    
-    figura[i] = new equilateralTriangle(altura,base);
-    i++;
+    F.Figura[F.i] = new equilateralTriangle(altura,base);
+    F.i++;
 }
-void crearTrianguloIsosceles()
+void crearTrianguloIsosceles(figura& F)
 {
 
     float lado1 ,base,altura;
@@ -56,10 +60,10 @@ void crearTrianguloIsosceles()
     cout << "Digite la altura del triangulo:";
     cin >> altura;
    
-    figura[i] = new isoscelesTriangle(lado1,base,altura);
-    i++;
+    F.Figura[F.i] = new isoscelesTriangle(lado1,base,altura);
+    F.i++;
 }
-void crearTrianguloescaleno()
+void crearTrianguloescaleno(figura& F)
 {
    float lado1 ,lado2,base,altura;
     cout << "Ingrese la longitud de un lado del triangulo:";
@@ -71,19 +75,20 @@ void crearTrianguloescaleno()
     cout << "Digite la altura del triangulo:";
     cin  >> altura;
    
-    figura[i] = new scaleneTriangle(lado1,lado2,base,altura);
-    i++;
+    F.Figura[F.i] = new scaleneTriangle(lado1,lado2,base,altura);
+    F.i++;
 }
-void mostrarDatos()
+void mostrarDatos(figura& F)
 {
-    for (int i = 0; i <10; i++)
+    for (int i = 0; i < F.i; i++)
     {
         cout  << endl;
         cout << "-----MOSTRANDO DATOS-----" << endl;
-        cout  << "El área de la figura: " <<  i+1 << " es: " << figura[i]->getArea() << endl;
-        cout  << "El perímetro de la figura: " << i+1 << " es: " << figura[i]->getPerimeter() << endl;
+        cout  << "El area de la figura: " <<  F.i+1 << " es: "     << F.Figura[F.i]->getArea() << endl;
+        cout  << "El perimetro de la figura: " << F.i+1 << " es: " << F.Figura[F.i]->getPerimeter() << endl;
     }
 }
+
 void cargarFigura()
 {   
    
@@ -100,24 +105,25 @@ void cargarFigura()
         switch (opc)
         {
         case 1:
-           crearCirculo();
+           crearCirculo(F);
             break;
         case 2: 
-         crearCuadrado();
+         crearCuadrado(F);
             break;
          case 3:
-         crearTrianguloEquilatero();
+         crearTrianguloEquilatero(F);
             break;
          case 4:
-         crearTrianguloescaleno();
+         crearTrianguloescaleno(F);
             break;
          case 5: 
-         crearTrianguloIsosceles();
+         crearTrianguloIsosceles(F);
             break;
         default:
              cout << "error";
             break;
         
+        }
 }
 
 void pause()
@@ -135,7 +141,7 @@ void menu()
     {
         cout << "---MENU---" << endl;
         cout << "1. Cargar una figura " << endl;
-        cout << "2. Ver áreas y perímetros " << endl;
+        cout << "2. Ver areas y perimetros " << endl;
         cout << "3. Salir " << endl;
        
         cin >>opcion;
@@ -145,32 +151,36 @@ void menu()
             case 1:
                 cargarFigura();
                 
+                
             break;
 
             case 2:
-                mostrarDatos();
+                mostrarDatos(F);
+               
             break;
 
             case 3: 
-                for (int i = 0; i < 10; i++)
-                {
-                    delete figura[i];
-                }
+              
                 
-                exit(EXIT_SUCCESS);//SALIR CORRECTAMENTE
+                exit(EXIT_SUCCESS);
+           break;
+
+           default: if(opcion<1||opcion>3) cout << "opcion no encontrada intente de nuevo"<<endl<<endl;
             break;
 
-            default: 
-                cout<< "Opción inexistente." << endl;
-            break;
         } 
 
-    } while (opcion<0 && opcion>3);
+    } while (opcion!=3);
 }
 
-int main(int argc, char const *argv[])
+int main()
 {
     menu();
-    pause();
+   
+
+    for (int i = 0; i < F.i; i++)
+                {
+                    delete F.Figura[i];
+                }
     return 0;
 }
